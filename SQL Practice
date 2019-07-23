@@ -1,0 +1,96 @@
+*************************************************************************************
+CREATE TABLE Service(
+	serviceCode varchar(20) NOT NULL,
+	description varchar(100),
+	
+	PRIMARY KEY (serviceCode)
+);
+
+select * from Service;
+
+insert into Service(serviceCode, description)
+Values(1000, 'Mens buzzcut');
+
+*************************************************************************************
+
+CREATE TABLE Customer ( 
+	Members_ID int Primary Key, 
+	FirstName varchar( 20),
+	LastName varchar(20), 
+	PhoneNumber varchar (11), 
+	Address varchar(20),
+	City varchar(20),
+	State varchar(5),
+	Zipcode char(10)
+);
+ INSERT INTO Customer values ( 89756345, ' Brissa', ' Palacio', 323 3328765, '356 S Ave 20', ' Monrovia', 'CA', 
+ INSERT INTO Customer values( 097567432, 'Carlos', ' Hernandez', 323 9995555, '123 S Ave 40', 'Los Angeles', 'CA', 
+ INSERT INTO Customer values ( 098567234 , ' Melissa', ' Robles', 323 6678065, '336 Maceo St ', ' Compton', 'CA', 
+ INSERT INTO Customer values ( 963852741, ' Patricia', ' Hurtado', 323 9215888, '675 Johnson', ' Los Angeles ', 'CA', 
+ INSERT INTO Customer values (  854962148, ' Jocelyn', ' Mendez', 3239095755, '596 Dakota', ' Los Angeles ', 'CA', 
+ INSERT INTO Customer values ( 965489753, ' Jessica', ' Smith',6264058956, '1023 France St', ' Los Angeles ', 'CA', 
+ INSERT INTO Customer values (258456951 , ' John ', ' Howard', 9094567895, '1258 Italy Ave', ' Los Angeles ', 'CA', 
+ INSERT INTO Customer values ( 369863456, ' Joe ', ' Taylor', 6263578523, '963  State st', ' Los Angeles ', 'CA', 
+select * from Customer;
+
+*********************************************************************
+
+CREATE TABLE Business(
+	businessID char(12) NOT NULL,
+	businessName varchar(20),
+	address varchar(30),
+	city char(10),
+	state char(2),
+	phoneNumber varchar(11),
+	serviceCode varchar(20),
+
+	PRIMARY KEY (businessID),
+	FOREIGN KEY (serviceCode) REFERENCES Service(serviceCode)
+);
+Select * From Business;
+
+insert into Business(businessID, businessName, address, city, state, phoneNumber, serviceCode)
+Values(1000, 'Mens buzzcut');
+
+Drop Table Business;
+****************************************************************
+CREATE TABLE ServiceByBusiness (
+     businessID char(12) REFERENCES Business NOT NULL,
+     serviceCode varchar(20) REFERENCES Service NOT NULL,
+     description varchar(100),
+     PRIMARY KEY(businessID, serviceCode),
+     FOREIGN KEY(description) REFERENCES Service(serviceCode)
+);
+*****************************************************************
+CREATE TABLE Appointment_History (
+     businessID char(12) REFERENCES Business NOT NULL,
+     Members_ID int REFERENCES Customer NOT NULL,
+	 app_Date  smalldatetime,
+     PRIMARY KEY(businessID, Members_ID),
+);
+
+******************************************************************
+CREATE TABLE Appointments 
+( Confirmation # int Primary Key, 
+Date varchar ( 10), 
+Time varchar (10),
+Member_ID int,
+Service Code varchar (20)
+Business ID # 
+
+Foreign Key (Member_ID ) References Customer (Member_ID )
+Foreign Key (Service Code ) References Type Of Service (Service Code )
+Foreign Key (BusinessID ) References Business (Business ID )
+
+
+
+****************************************************************
+select * from Business;
+select * from Customer;
+
+insert into Service(serviceCode, description)
+Values(1000, 'Mens buzzcut');
+
+select * from Appointment_History; 
+insert into Business Values(3698745,'Bobs Barbershop','357 S Compton', 'Compton','CA',3238499691,1000);
+insert into Appointment_History Values(3698745,258456951,'02/10/2010 12:30');
